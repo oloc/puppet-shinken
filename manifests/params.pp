@@ -4,8 +4,8 @@ class shinken::params {
   $group  = 'shinken'
 
   $conf_dir    = '/etc/shinken'
-  $modules_dir = "${confdir}/modules"
-  $daemons_dir = "${confdir}/daemons"
+  $modules_dir = "${conf_dir}/modules"
+  $daemons_dir = "${conf_dir}/daemons"
 
   $packages = ['python-pycurl',
     'python-cherrypy3',

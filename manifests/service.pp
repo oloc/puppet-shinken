@@ -3,7 +3,7 @@ class shinken::service (
 ){
 
   $service = $ensure ? {
-  	'present' => runnning,
+    'present' => running,
     'absent'  => stopped,
   }
   service{ 'shinken':

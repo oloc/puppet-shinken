@@ -1,6 +1,6 @@
 class shinken::install (
-  $modules  = shinken::params::modules,
-  $packages = shinken::params::packages,
+  $modules  = $shinken::params::modules,
+  $packages = $shinken::params::packages,
 ) inherits shinken::params {
 
   $packs = hiera('shinken::packages')

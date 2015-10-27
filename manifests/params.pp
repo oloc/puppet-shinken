@@ -27,5 +27,4 @@ class shinken::params {
     'linux-ssh',
     'linux-snmp']
 
-
 }

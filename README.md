@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/oloc/puppet-shinken.png)](https://travis-ci.org/oloc/puppet-shinken)
 # shinken
 
 #### Table of Contents

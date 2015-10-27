@@ -1,7 +1,7 @@
 class shinken::files (
-  $ensure = shinken::params::ensure,
-  $user   = shinken::params::user,
-  $group  = shinken::params::group,
+  $ensure = $shinken::params::ensure,
+  $user   = $shinken::params::user,
+  $group  = $shinken::params::group,
 ) inherits shinken::params {
 
   $dirs=['/etc/shinken','/var/lib/shinken','/var/log/shinken','/var/run/shinken',
@@ -20,24 +20,24 @@ class shinken::files (
     group  => $group,   
   }
 
-  $daemons = ['brokerd.ini', 'pollerd.ini', 'reactionnerd.ini', 'receiverd.ini', 'schedulerd.ini']
-  file { $daemons:
+  $daemons = ['brokerd', 'pollerd', 'reactionnerd', 'receiverd', 'schedulerd']
+  file { "${daemons}.ini":
     ensure => file,
-    path   => "${daemons_dir}/${title}",
+    path   => "${daemons_dir}/$title",
     mode   => '0644',
     owner  => $user,
     group  => $group,
-    source => "puppet:///modules/${module_name}/${title}",    
+    source => "puppet:///modules/${module_name}/$title",    
   }
 
-  $mod = ['webui2.cfg', 'mongodb.cfg']
-  file { $mod:
+  $mod = ['webui2', 'mongodb']
+  file { "${mod}.cfg":
     ensure => file,
-    path   => "${modules_dir}/${title}"
+    path   => "${modules_dir}/$title",
     mode   => '0644',
     owner  => $user,
     group  => $group,
-    source => "puppet:///modules/${module_name}/${title}",
+    source => "puppet:///modules/${module_name}/$title",
   }
   file { "${conf_dir}/brokers/broker-master.cfg":
     ensure => file,

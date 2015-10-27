@@ -35,7 +35,17 @@
 #
 # Copyright 2015 Your name here, unless otherwise noted.
 #
-class shinken {
+class shinken (
+  $ensure   = shinken::params::ensure,
+  $user     = shinken::params::user,
+  $group    = shinken::params::group,
+  $modules  = shinken::params::modules,
+  $packages = shinken::params::packages,
+) inherits shinken::params {
 
+  class { 'shinken::users': }->
+  class { 'shinken::install': }->
+  class { 'shinken::files': }->
+  class { 'shinken::service': }
 
 }

@@ -1,8 +1,11 @@
 class shinken::files (
-  $ensure      = $shinken::params::ensure,
-  $user        = $shinken::params::user,
-  $group       = $shinken::params::group,
-) inherits shinken::params {
+  $ensure      = $shinken::ensure,
+  $user        = $shinken::user,
+  $group       = $shinken::group,
+  $conf_dir    = $shinken::conf_dir,
+  $modules_dir = $shinken::modules_dir,
+  $daemons_dir = $shinken::daemons_dir,
+) inherits shinken {
 
   $dirs=['/etc/shinken','/var/lib/shinken','/var/log/shinken','/var/run/shinken',
     $modules_dir, $daemons_dir,"${conf_dir}/brokers"]

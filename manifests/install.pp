@@ -1,7 +1,26 @@
 class shinken::install (
-  $modules  = $shinken::params::modules,
-  $packages = $shinken::params::packages,
-) inherits shinken::params {
+  $modules  = $shinken::modules,
+) inherits shinken {
+
+  $packages = ['python-pycurl',
+    'python-cherrypy3',
+    'python-crypto',
+    'nagios-plugins-standard',
+    'mongodb',
+    'python-pymongo']
+
+  $modules = ['mod-mongodb',
+    'snapshot-mongodb',
+    'retention-mongodb',
+    'webui2',
+    'auth-cfg-password',
+    'livestatus',
+    'graphite',
+    'ui-graphite',
+    'ssh',
+    'http',
+    'linux-ssh',
+    'linux-snmp']
 
   shinken::undef_package { $packages: }
 

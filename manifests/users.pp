@@ -1,8 +1,8 @@
 class shinken::users(
-  $ensure  = $shinken::params::ensure,
-  $user    = $shinken::params::user,
-  $group   = $shinken::params::group,
-) inherits shinken::params {
+  $ensure  = $shinken::ensure,
+  $user    = $shinken::user,
+  $group   = $shinken::group,
+) inherits shinken {
 
   group {'shinken group':
     ensure => present,

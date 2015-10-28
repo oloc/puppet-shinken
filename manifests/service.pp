@@ -1,6 +1,6 @@
 class shinken::service (
-  $ensure = present,
-){
+  $ensure = $shinken::ensure,
+) inherits shinken {
 
   $service = $ensure ? {
     'present' => running,

@@ -37,7 +37,7 @@
 #
 class shinken (
   $ensure      = 'present',
-  user        = 'shinken',
+  $user        = 'shinken',
   $group       = 'shinken',
   $modules     = undef,
   $conf_dir    = '/etc/shinken',

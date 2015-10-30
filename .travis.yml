@@ -26,8 +26,8 @@ env:
 before_install: rm Gemfile.lock || true
 
 script:
- - "bundle exec rake validate"
- - "bundle exec rake rspec"
+ - 'bundle exec rake validate'
+ - 'bundle exec rake spec'
 
 matrix:
   exclude:

@@ -1,6 +1,4 @@
-class shinken::install (
-  $modules  = $shinken::modules,
-) inherits shinken {
+class shinken::install {
 
   $packages = ['python-pycurl',
     'python-cherrypy3',
@@ -32,7 +30,7 @@ class shinken::install (
     ensure  => '2.4',
     pkgname => 'shinken',
     timeout => 1800,
-    before  => Exec['shinken_init']
+    before  => Exec['shinken_init'],
   }
 
   exec{'shinken_init':

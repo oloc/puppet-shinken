@@ -32,7 +32,7 @@ class shinken::files (
     group  => $group,
   }
 
-  $mod = ['webui2.cfgr', 'mongodb.cfg']
+  $mod = ['webui2.cfg', 'mongodb.cfg']
   shinken::file { $mod:
     ensure => file,
     path   => $modules_dir,

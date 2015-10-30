@@ -3,10 +3,9 @@ define shinken::file (
   $path      = undef,
   $ensure    = file,
   $mode      = '0644',
-  $owner     = $shinken::params::user,
-  $group     = $shinken::params::group,
+  $owner     = $shinken::user,
+  $group     = $shinken::group,
 ){
-  include shinken::params
   
   if $path {
     $fq_name = "${path}/${file_name}"

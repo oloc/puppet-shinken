@@ -24,10 +24,10 @@ env:
   - PUPPET_VERSION="~> 3.8.0"
 
 before_install: rm Gemfile.lock || true
-
+install: bundle install
 script:
  #- "bundle exec rake validate"
- - "bundle exec rake rspec"
+ - 'bundle exec rake rspec'
 
 matrix:
   exclude:

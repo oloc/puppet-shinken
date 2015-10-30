@@ -28,6 +28,7 @@ install: bundle install
 script:
  - 'bundle exec rake validate'
  - 'bundle exec rake lint'
+ - 'bundle exec rake syntax'
  - 'bundle exec rake spec'
 
 matrix:

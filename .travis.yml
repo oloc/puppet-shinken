@@ -30,7 +30,7 @@ script:
  - 'bundle exec rake lint'
  - 'bundle exec rake syntax' 
  - 'bundle exec rake spec'
- - 'bundle exec rake coverage' 
+ - 'bundle exec rake rspec'
 
 matrix:
   exclude:

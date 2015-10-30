@@ -1,5 +1,5 @@
 require 'spec_helper'
-describe 'shinken', :type => 'class' do
+describe 'shinken' do
 
   let(:title) { 'shinken' }
 

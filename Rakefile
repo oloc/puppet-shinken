@@ -46,9 +46,3 @@ task :validate do
     sh "erb -P -x -T '-' #{template} | ruby -c"
   end
 end
-
-# 
-task :spec do
-  SPEC_OPTS = File.read("spec/spec.opts").chomp || ""
-  puts SPEC_OPTS
-end

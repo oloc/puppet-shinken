@@ -1,12 +1,28 @@
 {
   "name": "oloc-shinken",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": "oloc",
-  "summary": "Install Shinken",
-  "license": "Apache 2.0",
+  "summary": "This puppet module installs Shinken, an open source monitoring framework.",
+  "license": "Apache-2.0",
   "source": "https://github.com/oloc/puppet-shinken.git",
   "project_page": "https://github.com/oloc/puppet-shinken",
   "issues_url": "https://github.com/oloc/puppet-shinken/issues",
+  "tags": ["shinken", "supervision", "monitoring"],
+  "operatingsystem_support": [
+    {
+      "operatingsystem": "RedHat",
+      "operatingsystemrelease": ["5.0","6.0"]
+    },
+    { "operatingsystem": "CentOS",
+      "operatingsystemrelease": ["5.0","6.0"]
+    },
+    { "operatingsystem": "Debian",
+      "operatingsystemrelease": ["6.0","7.0"]
+    },
+    { "operatingsystem": "Ubuntu",
+      "operatingsystemrelease": ["12.04","14.04"]
+    }
+  ],
   "dependencies": [
     {"name":"puppetlabs-stdlib","version_requirement":">= 1.0.0"},
     {"name":"stankevich-python","version_requirement":">= 0.0.1"}

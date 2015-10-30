@@ -9,13 +9,14 @@ describe 'shinken', :type => 'class' do
         facts
       end
 
-    let (:params) { default_params }
+      let (:params) { default_params }
 
-    context 'with defaults for all parameters' do
-      it { should contain_class('shinken::users') }
-      it { should contain_class('shinken::install') }
-      it { should contain_class('shinken::files') }
-      it { should contain_class('shinken::service') }
+      context 'with defaults for all parameters' do
+        it { should contain_class('shinken::users') }
+        it { should contain_class('shinken::install') }
+        it { should contain_class('shinken::files') }
+        it { should contain_class('shinken::service') }
+      end
     end
   end
 end

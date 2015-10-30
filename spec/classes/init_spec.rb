@@ -1,6 +1,8 @@
 require 'spec_helper'
 describe 'shinken' do
 
+  let(:title) { 'shinken')
+
   context 'with defaults for all parameters' do
     it { should contain_class('shinken::users') }
     it { should contain_class('shinken::install') }

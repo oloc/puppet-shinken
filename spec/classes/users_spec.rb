@@ -1,5 +1,5 @@
 require 'spec_helper'
-describe 'shinken::users' do
+describe 'shinken::users', :type => 'class' do
 
   let(:title) { 'shinken::users' }
 

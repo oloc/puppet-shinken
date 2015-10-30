@@ -7,3 +7,4 @@ gem 'puppetlabs_spec_helper', '>= 0.1.0'
 gem 'puppet-syntax'
 gem 'rspec-puppet-facts', :require => false
 gem 'rspec-its'
+gem 'rspec-collection_matchers'

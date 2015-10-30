@@ -6,4 +6,5 @@ include RspecPuppetFacts
 
 require 'puppet-lint'
 require 'rspec/its'
+require 'rspec/collection_matchers'
 PuppetLint::Plugins.load_spec_helper

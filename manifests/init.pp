@@ -45,9 +45,9 @@ class shinken (
   $daemons_dir = '/etc/shinken/daemons',
 ) {
 
-  validate_string($user)
-  validate_string($group)
-  validate_array($modules)
+ # validate_string($user)
+ # validate_string($group)
+ # validate_array($modules)
 
   class { 'shinken::users': }->
   class { 'shinken::install': }->

@@ -9,8 +9,6 @@ describe 'shinken', :type => 'class' do
         facts
       end
 
-      let (:params) { default_params }
-
       context 'with defaults for all parameters' do
         it { should contain_class('shinken::users') }
         it { should contain_class('shinken::install') }

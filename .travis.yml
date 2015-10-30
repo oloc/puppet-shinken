@@ -28,7 +28,7 @@ install: bundle install
 script:
  #- "bundle exec rake validate"
  #- 'bundle exec rake rspec'
- - "rake rspec SPEC_OPTS='--format documentation'"
+ - "rake spec SPEC_OPTS='--format documentation'"
 
 matrix:
   exclude:

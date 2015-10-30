@@ -4,7 +4,7 @@ group :development do
   gem "puppet-blacksmith"
 end
 
-group :rake do
+group :spec do
   puppetversion = ENV.key?('PUPPET_VERSION') ? "#{ENV['PUPPET_VERSION']}" : ['>= 3.0.0','< 4.0']
   gem "rake"
   gem "puppet", puppetversion

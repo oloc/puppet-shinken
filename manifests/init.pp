@@ -39,7 +39,7 @@ class shinken (
   $ensure      = 'present',
   $user        = 'shinken',
   $group       = 'shinken',
-  $modules     = undef,
+  $modules     = [],
   $conf_dir    = '/etc/shinken',
   $modules_dir = '/etc/shinken/modules',
   $daemons_dir = '/etc/shinken/daemons',

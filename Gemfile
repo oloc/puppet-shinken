@@ -5,5 +5,4 @@ gem 'puppet', puppetversion
 gem 'puppet-lint'
 gem 'puppetlabs_spec_helper', '>= 0.1.0'
 gem 'puppet-syntax'
-gem 'rspec-puppet-facts'
-gem 'rspec'
+gem 'rspec-puppet-facts', :require => false

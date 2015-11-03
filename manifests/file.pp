@@ -1,11 +1,16 @@
 define shinken::file (
+  $ensure    = file,
   $file_name = $title,
   $path      = undef,
-  $ensure    = file,
   $mode      = '0644',
   $owner     = $shinken::user,
   $group     = $shinken::group,
 ){
+
+  $ensure_file = $ensure ? {
+    'present' => file,
+    'absent'  => absent,
+  }
   
   if $path {
     $fq_name = "${path}/${file_name}"
@@ -14,10 +19,10 @@ define shinken::file (
   }
 
   file { $fq_name:
-    ensure => $ensure,
-    mode   => $mode,
-    owner  => $owner,
-    group  => $group,
-    source => "puppet:///modules/${module_name}/${file_name}",
+    ensure  => $ensure_file,
+    mode    => $mode,
+    owner   => $owner,
+    group   => $group,
+    content => template("${module_name}/${file_name}.erb"),
   }
 }

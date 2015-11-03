@@ -1,6 +1,11 @@
-class shinken::install {
+class shinken::install (
+  $ensure = $shinken::ensure,
+  $user   = $shinken::user,
+  $group  = $shinken::group,
+) inherits shinken {
 
-  $packages = ['python-pycurl',
+  $packages = ['python-pip',
+    'python-pycurl',
     'python-cherrypy3',
     'python-crypto',
     'nagios-plugins-standard',
@@ -20,24 +25,25 @@ class shinken::install {
     'linux-ssh',
     'linux-snmp']
 
-  shinken::undef_package { $packages: }
-
-  class { 'python' :
-    version => 'system',
-    pip     => 'present',
-  }
-  python::pip { 'shinken' :
-    ensure  => '2.4',
-    pkgname => 'shinken',
-    timeout => 1800,
-    before  => Exec['shinken_init'],
+  shinken::undef_package { $packages:
+    ensure => $ensure,
   }
 
-  exec{'shinken_init':
-    command => '/usr/bin/shinken --init',
-    unless  => '/bin/ls -l /root/.shinken.ini',
+  package { 'shinken':
+    ensure   => $ensure,
+    provider => pip,
+    require  => [Package['pip'], Package['pycurl'], User['shinken'],]
   }
-  
+
+  shinken::file { 'shinken.ini':
+    ensure  => $ensure,
+    path    => '/root/.shinken.ini',
+    mode    => '0644',
+    owner   => $user,
+    group   => $group,
+    require => Package['shinken'],
+  }
+
   shinken::module {$modules:
     require => Exec['shinken_init'],
   }

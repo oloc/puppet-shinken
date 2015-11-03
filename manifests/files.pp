@@ -7,17 +7,26 @@ class shinken::files (
   $daemons_dir = $shinken::daemons_dir,
 ) inherits shinken {
 
+  $ensure_file = $ensure ? {
+    present => file,
+    absent  => absent,
+  }
+  $ensure_dir = $ensure ? {
+    present => directory,
+    absent  => absent,
+  }
+
   $dirs=['/etc/shinken','/var/lib/shinken','/var/log/shinken','/var/run/shinken',
     $modules_dir, $daemons_dir,"${conf_dir}/brokers"]
   file {$dirs:
-    ensure => directory,
+    ensure => $ensure_dir,
     mode   => '0755',
     owner  => $user,
     group  => $group,
   }
 
   file { "${conf_dir}/shinken.cfg":
-    ensure => file,
+    ensure => $ensure_file,
     mode   => '0644',
     owner  => $user,
     group  => $group,
@@ -25,7 +34,7 @@ class shinken::files (
 
   $daemons = ['brokerd.ini', 'pollerd.ini', 'reactionnerd.ini', 'receiverd.ini', 'schedulerd.ini']
   shinken::file { $daemons:
-    ensure => file,
+    ensure => $ensure_file,
     path   => $daemons_dir,
     mode   => '0644',
     owner  => $user,
@@ -34,14 +43,14 @@ class shinken::files (
 
   $mod = ['webui2.cfg', 'mongodb.cfg']
   shinken::file { $mod:
-    ensure => file,
+    ensure => $ensure_file,
     path   => $modules_dir,
     mode   => '0644',
     owner  => $user,
     group  => $group,
   }
   file { "${conf_dir}/brokers/broker-master.cfg":
-    ensure => file,
+    ensure => $ensure_file,
     mode   => '0644',
     owner  => $user,
     group  => $group,

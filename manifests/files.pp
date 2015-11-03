@@ -16,8 +16,10 @@ class shinken::files (
     absent  => absent,
   }
 
-  $dirs=['/etc/shinken','/var/lib/shinken','/var/log/shinken','/var/run/shinken',
-    $modules_dir, $daemons_dir,"${conf_dir}/brokers"]
+  $masters = ['arbiters', 'brokers', 'pollers', 'reactionners','receivers','schedulers']
+  $dirs = union(['/etc/shinken','/var/lib/shinken','/var/log/shinken','/var/run/shinken'],
+    [$modules_dir, $daemons_dir],
+    prefix($masters, "${conf_dir}/"))
   file {$dirs:
     ensure => $ensure_dir,
     mode   => '0755',
@@ -25,7 +27,13 @@ class shinken::files (
     group  => $group,
   }
 
-  $conf_file=['shinken.cfg', 'brokers/broker-master.cfg']
+  $conf_file=['shinken.cfg',
+              'brokers/broker-master.cfg',
+              'arbiters/arbiter-master.cfg',
+              'pollers/poller-master.cfg',
+              'reactionners/reactionner-master.cfg',
+              'receivers/receiver-master.cfg',
+              'schedulers/scheduler-master.cfg']
   shinken::file { $conf_file:
     ensure => $ensure_file,
     path   => $conf_dir,
@@ -42,7 +50,7 @@ class shinken::files (
     owner  => $user,
     group  => $group,
   }
-
+  
   $mod = ['webui2.cfg', 'mongodb.cfg']
   shinken::file { $mod:
     ensure => $ensure_file,

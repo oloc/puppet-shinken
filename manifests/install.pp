@@ -35,12 +35,13 @@ class shinken::install (
     require  => [Package['python-pip'], Package['python-pycurl'], User['shinken'],]
   }
 
-  shinken::file { 'shinken.ini':
+  file { 'shinken.ini':
     ensure  => $ensure,
     path    => '/root/.shinken.ini',
     mode    => '0644',
     owner   => $user,
     group   => $group,
+    content => template("${module_name}/shinken.ini.erb"),
     require => Package['shinken'],
   }
 

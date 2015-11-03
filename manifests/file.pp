@@ -8,8 +8,8 @@ define shinken::file (
 ){
 
   $ensure_file = $ensure ? {
-    'present' => file,
-    'absent'  => absent,
+    /(present|file)/ => file,
+    absent           => absent,
   }
   
   if $path {

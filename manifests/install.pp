@@ -32,7 +32,7 @@ class shinken::install (
   package { 'shinken':
     ensure   => $ensure,
     provider => pip,
-    require  => [Package['pip'], Package['pycurl'], User['shinken'],]
+    require  => [Package['python-pip'], Package['python-pycurl'], User['shinken'],]
   }
 
   shinken::file { 'shinken.ini':

@@ -1,9 +1,10 @@
 define shinken::undef_package (
-    $package_name = $title,
+  $package_ensure = $shinken::ensure,
+  $package_name   = $title,
 ){
   if !defined(Package[$package_name]) {
     package { $package_name:
-      ensure => present,
+      ensure => $package_ensure,
     }
   }
 }

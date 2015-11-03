@@ -45,6 +45,6 @@ class shinken::files (
     mode   => '0644',
     owner  => $user,
     group  => $group,
-    source => "puppet:///modules/${module_name}/broker-master.cfg",
+    content => template("${module_name}/broker-master.cfg.erb"),
   }
 }

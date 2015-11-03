@@ -45,6 +45,6 @@ class shinken::install (
   }
 
   shinken::module {$modules:
-    require => Exec['shinken_init'],
+    require => File['shinken.ini'],
   }
 }

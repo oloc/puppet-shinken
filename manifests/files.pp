@@ -25,8 +25,10 @@ class shinken::files (
     group  => $group,
   }
 
-  file { "${conf_dir}/shinken.cfg":
+  $conf_file=['shinken.cfg', 'brokers/broker-master.cfg']
+  shinken::file { $conf_file:
     ensure => $ensure_file,
+    path   => $conf_dir,
     mode   => '0644',
     owner  => $user,
     group  => $group,
@@ -48,12 +50,5 @@ class shinken::files (
     mode   => '0644',
     owner  => $user,
     group  => $group,
-  }
-  file { "${conf_dir}/brokers/broker-master.cfg":
-    ensure => $ensure_file,
-    mode   => '0644',
-    owner  => $user,
-    group  => $group,
-    content => template("${module_name}/broker-master.cfg.erb"),
   }
 }

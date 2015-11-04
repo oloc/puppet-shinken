@@ -17,7 +17,7 @@ class shinken::files (
   }
 
   $masters = ['arbiters', 'brokers', 'pollers', 'reactionners','receivers','schedulers']
-  $dirs = union(['/etc/shinken','/var/lib/shinken','/var/log/shinken','/var/run/shinken'],
+  $dirs = union(['/etc/shinken', '/etc/shinken/packs','/var/lib/shinken','/var/log/shinken','/var/run/shinken'],
     [$modules_dir, $daemons_dir],
     prefix($masters, "${conf_dir}/"))
   file {$dirs:

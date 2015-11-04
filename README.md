@@ -11,70 +11,126 @@
     * [Beginning with shinken](#beginning-with-shinken)
 4. [Usage - Configuration options and additional functionality](#usage)
 5. [Reference - An under-the-hood peek at what the module is doing and how](#reference)
+    * [Public classes]: #public-classes
+    * [Private classes]: #private-classes
+    * [Private defines]: #private-defines
 5. [Limitations - OS compatibility, etc.](#limitations)
 6. [Development - Guide for contributing to the module](#development)
 
 ## Overview
 
-A one-maybe-two sentence summary of what the module does/what problem it solves.
-This is your 30 second elevator pitch for your module. Consider including
-OS/Puppet version it works with.
+This puppet module installs [Shinken](http://http://www.shinken-monitoring.org/), an open source monitoring framework. 
 
 ## Module Description
 
-If applicable, this section should have a brief description of the technology
-the module integrates with and what that integration enables. This section
-should answer the questions: "What does this module *do*?" and "Why would I use
-it?"
+Shinken is a useful open source monitoring framework, and this module provides a simplified way of creating configurations to manage your infrastructure.
 
-If your module has a range of functionality (installation, configuration,
-management, etc.) this is the time to mention it.
+This module installs Shinken and helps you to configure it.
+
 
 ## Setup
 
 ### What shinken affects
 
-* A list of files, packages, services, or operations that the module will alter,
-  impact, or execute on the system it's installed on.
-* This is a great place to stick any warnings.
-* Can be in list or paragraph form.
+* Configuration files and directories (created and written to)
+* package/service/configuration files for Shinken
+* Shinken modules
 
-### Setup Requirements **OPTIONAL**
+### Setup Requirements
 
-If your module requires anything extra before setting up (pluginsync enabled,
-etc.), mention it here.
+This module requires nothing extra before setting up.
 
 ### Beginning with shinken
 
-The very basic steps needed for a user to get the module up and running.
+To install Shinken with the default parameters:
 
-If your most recent release breaks compatibility or requires particular steps
-for upgrading, you may wish to include an additional section here: Upgrading
-(For an example, see http://forge.puppetlabs.com/puppetlabs/firewall).
+~~~ puppet
+    class { 'shinken': }
+~~~
+
+The defaults are determined as below, and you can establish customized parameters.
+
+~~~ puppet
+    class { 'shinken':
+      ensure      => present,
+      user        => 'shinken',
+      group       => 'shinken',
+      modules     => [],
+      conf_dir    => '/etc/shinken',
+      modules_dir => '/etc/shinken/modules',
+      daemons_dir => '/etc/shinken/daemons',
+    }
+~~~
 
 ## Usage
 
-Put the classes, types, and resources for customizing, configuring, and doing
-the fancy stuff with your module here.
+This module modifies Shinken configuration files and directories and purges any configuration not managed by Puppet. Configuration of Shinken should be managed by Puppet, as non-Puppet configuration files can cause unexpected failures.
 
 ## Reference
 
-Here, list the classes, types, providers, facts, etc contained in your module.
-This section should include all of the under-the-hood workings of your module so
-people know what the module is touching on their system but don't need to mess
-with things. (We are working on automating this section!)
+### Classes
+
+- [**Public Classes**](#public-classes)
+* [Class: shinken](#class-shinken): Guides the basic setup of Shinken.
+
+- [**Private Classes**](#private-classes)
+* [Class: shinken::files](#private-files): Guides the files setup of Shinken.
+* [Class: shinken::install](#private-install): Install Shinken package and Shinken modules.
+* [Class: shinken::service](#private-service): Manage the Shinken services.
+* [Class: shinken::users](#private-users): Manage the Shinken user/group.
+
+- [**Private Defines**](#private-defines)
+* [Define: shinken::file](#define-file): Manage templated file.
+* [Define: shinken::module](#define-module): Manage Shinken module.
+* [Define: shinken::undef_package](#define-undef_package): Install undefined package.
+
+### Public Classes
+
+#### Class `shinken`
+The shinken module's primary class, shinken, guides the basic setup of [Shinken](http://http://www.shinken-monitoring.org/) on your system.
+
+You can use hiera to set some parameters.
+
+##### Parameters within `shinken`:
+
+`group`
+
+Changes the group that Shinken will answer requests as. The parent process will continue to be run as root, but resource accesses by child processes will be done under this group. This group is also the owner group of the shinken items.
+
+_Default: shinken_
+
+`user`
+
+Changes the user that Shinken will answer requests as. The parent process will continue to be run as root, but resource accesses by child processes will be done under this user. This user is also the owner of the shinken items.
+
+_Default: shinken_
+
+`modules`
+
+is an array of shinken modules ([See the official list](http://www.shinken.io/browse/modules/updated).).
+
+### Private Classes
+
+#### Class `shinken::files`
+#### Class `shinken::install`
+#### Class `shinken::service`
+#### Class `shinken::users`
+
+### Private Defines
+
+#### Define: `shinken::file`
+#### Define: `shinken::module`
+#### Define: `shinken::undef_package`
 
 ## Limitations
 
-This is where you list OS compatibility, version compatibility, etc.
+This module is CI tested on Centos 5 & 6, Ubuntu 12.04 & 14.04, Debian 6 & 7, and RHEL 6 & 7 platforms against the OSS version of Puppet.
 
 ## Development
 
-Since your module is awesome, other users will want to play with it. Let them
-know what the ground rules for contributing are.
+oloc modules on the Puppet Forge are open projects, and community contributions are essential for keeping them great.
+Do not hesitate to contribute by pull requests.
 
-## Release Notes/Contributors/Etc **Optional**
 
-If you aren't using changelog, put your release notes here (though you should
-consider using changelog). You may also add any additional sections you feel are
-necessary or important to include here. Please use the `## ` header.
+
+

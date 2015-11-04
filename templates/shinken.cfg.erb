@@ -17,7 +17,7 @@ cfg_dir=hostgroups
 cfg_dir=contactgroups
 
 # And now real hosts, services, packs and discovered hosts
-# They are directory, and we will load all .cfg file into them, and 
+# They are directory, and we will load all .cfg file into them, and
 # their sub-directory
 cfg_dir=hosts
 cfg_dir=services
@@ -63,7 +63,7 @@ max_plugins_output_length=65536
 
 
 # Enable or not the state change on impact detection (like
-# a host going unreach if a parent is DOWN for example). It's for
+# an host going unreach if a parent is DOWN for example). It's for
 # services and hosts.
 # Remark: if this option is absent, the default is 0 (for Nagios
 # old behavior compatibility)
@@ -105,15 +105,15 @@ workdir=/var/run/shinken
 lock_file=/var/run/shinken/arbiterd.pid
 
 # The arbiter can have it's own local log
-local_log=/dev/stdout
+local_log=/var/log/shinken/arbiterd.log
 
 # Accepted log level values: DEBUG,INFO,WARNING,ERROR,CRITICAL
 #log_level=WARNING
 
 # User that will be used by the arbiter.
 # If commented, run as current user (root?)
-#shinken_user=shinken
-#shinken_group=shinken
+shinken_user=shinken
+shinken_group=shinken
 
 # The path to the modules directory
 modules_dir=/var/lib/shinken/modules

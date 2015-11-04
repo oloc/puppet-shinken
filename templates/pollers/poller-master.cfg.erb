@@ -7,9 +7,9 @@
 # https://shinken.readthedocs.org/en/latest/08_configobjects/poller.html
 #===============================================================================
 define poller {
-    poller_name     poller-master
-    address         poller
-    port            7771
+    poller_name     poller-master      ; Just the name
+    address         localhost          ; DNS name or IP
+    port            7771               ; TCP port of the daemon
 
     ## Optional
     spare               0   ; 1 = is a spare, 0 = is not a spare

@@ -13,9 +13,9 @@
 # https://shinken.readthedocs.org/en/latest/08_configobjects/broker.html
 #===============================================================================
 define broker {
-    broker_name     broker-master
-    address         broker
-    port            7772
+    broker_name     broker-master      ; Just the name
+    address         localhost          ; DNS name or IP
+    port            7772               ; TCP port of the daemon
     spare           0
 
     ## Optional

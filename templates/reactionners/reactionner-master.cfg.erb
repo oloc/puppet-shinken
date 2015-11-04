@@ -7,9 +7,9 @@
 # https://shinken.readthedocs.org/en/latest/08_configobjects/reactionner.html
 #===============================================================================
 define reactionner {
-    reactionner_name    reactionner-master
-    address             reactionner
-    port                7769
+    reactionner_name    reactionner-master ; Just the name
+    address             localhost          ; DNS name or IP
+    port                7769               ; TCP port of the daemon
     spare               0
 
     ## Optionnal

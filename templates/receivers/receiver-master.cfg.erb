@@ -5,9 +5,9 @@
 # load passive modules (like NSCA) and be read by the arbiter to dispatch data.
 #===============================================================================
 define receiver {
-    receiver_name   receiver-master
-    address         receiver 
-    port            7773
+    receiver_name   receiver-master    ; Just the name
+    address         localhost          ; DNS name or IP
+    port            7773               ; TCP port of the daemon
     spare           0
 
     ## Optional parameters

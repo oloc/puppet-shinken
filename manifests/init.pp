@@ -49,16 +49,27 @@ class shinken (
   validate_string($group)
   validate_array($modules)
 
-  if ($ensure in ['present', 'true']) {
+  if ($ensure in ['present', true]) {
     class { 'shinken::users': }->
     class { 'shinken::install': }->
     class { 'shinken::files': }->
     class { 'shinken::service': }
-  } elsif ($ensure in ['absent', 'false']) {
-    class { 'shinken::service': ensure => absent,}->
-    class { 'shinken::install': ensure => absent,}->
-    class { 'shinken::files': ensure => absent,}->
-    class { 'shinken::users': ensure => absent,}
+  } elsif ($ensure in ['absent', false]) {
+    class { 'shinken::service':
+      ensure => absent,
+    }
+    class { 'shinken::install':
+      ensure  => absent,
+      require => Class['shinken::service'],
+    }
+    class { 'shinken::files':
+      ensure  => absent,
+      require => Class['shinken::service'],
+    }
+    class { 'shinken::users':
+      ensure  => absent,
+      require => Class['shinken::service'],
+    }
   } else {
     notify{"Parameter ensure => ${ensure} is not managed.":}
   }

@@ -51,6 +51,7 @@ class shinken (
 
   if ($ensure in ['present', true]) {
     class { 'shinken::users': }->
+    class { 'shinken::dirs': }->
     class { 'shinken::install': }->
     class { 'shinken::files': }->
     class { 'shinken::service': }
@@ -59,16 +60,16 @@ class shinken (
       ensure => absent,
     }
     class { 'shinken::install':
-      ensure  => absent,
-      require => Class['shinken::service'],
+      ensure => absent,
     }
     class { 'shinken::files':
-      ensure  => absent,
-      require => Class['shinken::service'],
+      ensure => absent,
+    }
+    class { 'shinken::dirs':
+      ensure => absent,
     }
     class { 'shinken::users':
-      ensure  => absent,
-      require => Class['shinken::service'],
+      ensure => absent,
     }
   } else {
     notify{"Parameter ensure => ${ensure} is not managed.":}

@@ -91,7 +91,7 @@ The shinken module's primary class, shinken, guides the basic setup of [Shinken]
 
 You can use hiera to set some parameters.
 
-** Parameters within `shinken`:**
+**Parameters within `shinken`:**
 
 ##### `group`
 

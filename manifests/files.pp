@@ -25,6 +25,13 @@ class shinken::files (
     mode   => '0755',
     owner  => $user,
     group  => $group,
+  }->
+  file {'/var/lib/shinken/config/':
+    ensure => link,
+    mode   => '0755',
+    owner  => $user,
+    group  => $group,
+    target => $conf_dir,
   }
 
   $conf_file=['shinken.cfg',

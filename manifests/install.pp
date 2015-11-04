@@ -14,7 +14,7 @@ class shinken::install (
 
   $modules = ['mod-mongodb', 'snapshot-mongodb', 'retention-mongodb',
     'ui-graphite2',
-    'pymongo>=3.0.3', 'requests', 'arrow', 'bottle==0.12.8', 'webui2',
+    'webui2',
     'auth-cfg-password',
     'logstore-sqlite', 'livestatus',
     'graphite2',
@@ -27,7 +27,8 @@ class shinken::install (
     ensure => $ensure,
   }
 
-  package { 'shinken':
+  $pip = ['shinken', 'pymongo', 'requests', 'arrow', 'bottle']
+  package { $pip:
     ensure   => $ensure,
     provider => pip,
     require  => [Package['python-pip'], Package['python-pycurl'], User['shinken'],]

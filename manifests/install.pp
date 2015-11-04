@@ -15,6 +15,7 @@ class shinken::install (
   $modules = ['mod-mongodb',
     'snapshot-mongodb',
     'retention-mongodb',
+    'bottle',
     'webui2',
     'auth-cfg-password',
     'livestatus',

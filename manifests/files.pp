@@ -27,7 +27,8 @@ class shinken::files (
     group  => $group,
   }
 
-  $conf_file=['brokers/broker-master.cfg',
+  $conf_file=['shinken.cfg',
+              'brokers/broker-master.cfg',
               'arbiters/arbiter-master.cfg',
               'pollers/poller-master.cfg',
               'reactionners/reactionner-master.cfg',
@@ -41,7 +42,7 @@ class shinken::files (
     group  => $group,
   }
 
-  $daemons = ['arbiterd.ini', 'brokerd.ini', 'pollerd.ini', 'reactionnerd.ini', 'receiverd.ini', 'schedulerd.ini']
+  $daemons = ['brokerd.ini', 'pollerd.ini', 'reactionnerd.ini', 'receiverd.ini', 'schedulerd.ini']
   shinken::file { $daemons:
     ensure => $ensure_file,
     path   => $daemons_dir,

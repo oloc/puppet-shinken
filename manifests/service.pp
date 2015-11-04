@@ -3,13 +3,14 @@ class shinken::service (
 ) inherits shinken {
 
   $service = $ensure ? {
-    'present' => running,
-    'absent'  => stopped,
+    'present' => true,
+    'absent'  => false,
   }
   service{ 'shinken':
     ensure     => $service,
-    enable     => true,
-    hasrestart => true,
+    enable     => $service,
+    hasrestart => $service,
+    hasstatus  => $service,
   }
 
 }

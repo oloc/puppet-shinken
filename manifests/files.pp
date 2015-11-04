@@ -7,12 +7,16 @@ class shinken::files (
   $daemons_dir = $shinken::daemons_dir,
 ) inherits shinken {
 
+  $ensure_dir = $ensure ? {
+    present => directory,
+    absent  => absent,
+  }
   $ensure_file = $ensure ? {
     present => file,
     absent  => absent,
   }
-  $ensure_dir = $ensure ? {
-    present => directory,
+  $ensure_link = $ensure ? {
+    present => link,
     absent  => absent,
   }
 
@@ -22,19 +26,22 @@ class shinken::files (
     prefix($masters, "${conf_dir}/"))
   file {$dirs:
     ensure => $ensure_dir,
+    force  => true,
     mode   => '0755',
     owner  => $user,
     group  => $group,
   }
   file {'/var/lib/shinken/config/':
-    ensure => link,
+    ensure => $ensure_link,
+    force  => true,
     mode   => '0755',
     owner  => $user,
     group  => $group,
     target => $conf_dir,
   }
   file {'/var/lib/shinken/modules':
-    ensure => link,
+    ensure => $ensure_link,
+    force  => true,
     mode   => '0755',
     owner  => $user,
     group  => $group,

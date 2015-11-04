@@ -47,6 +47,7 @@ class shinken::install (
   }
 
   shinken::module {$modules:
+    ensure  => $ensure,
     require => File['shinken.ini'],
   }
 }

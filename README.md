@@ -87,7 +87,7 @@ This module modifies Shinken configuration files and directories and purges any 
 ### Public Classes
 
 #### Class: `shinken`
-The shinken module's primary class, shinken, guides the basic setup of [Shinken](http://http://www.shinken-monitoring.org/) on your system.
+The shinken module's primary class, shinken, guides the basic setup of [Shinken](http://www.shinken-monitoring.org/) on your system.
 
 You can use hiera to set some parameters.
 

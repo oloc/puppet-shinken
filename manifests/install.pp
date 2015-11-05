@@ -4,14 +4,6 @@ class shinken::install (
   $group  = $shinken::group,
 ) inherits shinken {
 
-  $packages = ['python-pip',
-    'python-pycurl',
-    'python-cherrypy3',
-    'python-crypto',
-    'nagios-plugins-standard',
-    'mongodb',
-    'python-pymongo']
-
   $modules = ['mod-mongodb', 'snapshot-mongodb', 'retention-mongodb',
     'ui-graphite2',
     'webui2',
@@ -23,9 +15,7 @@ class shinken::install (
     'linux-ssh',
     'linux-snmp']
 
-  shinken::undef_package { $packages:
-    ensure => $ensure,
-  }
+  class {'shinken::packages': }
 
   $pip = ['shinken', 'pymongo', 'requests', 'arrow', 'bottle']
   package { $pip:

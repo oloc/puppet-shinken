@@ -4,17 +4,6 @@ class shinken::install (
   $group  = $shinken::group,
 ) inherits shinken {
 
-  $modules = ['mod-mongodb', 'snapshot-mongodb', 'retention-mongodb',
-    'ui-graphite2',
-    'webui2',
-    'auth-cfg-password',
-    'logstore-sqlite', 'livestatus',
-    'graphite2',
-    'ssh',
-    'http',
-    'linux-ssh',
-    'linux-snmp']
-
   class {'shinken::packages': }
 
   $pip = ['shinken', 'pymongo', 'requests', 'arrow', 'bottle']
@@ -34,8 +23,7 @@ class shinken::install (
     require => Package['shinken'],
   }
 
-  shinken::module {$modules:
-    ensure  => $ensure,
+  class {'shinken::modules':
     require => File['shinken.ini'],
   }
 }

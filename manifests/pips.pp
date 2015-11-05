@@ -6,7 +6,6 @@ class shinken::pips (
   package { $pip:
     ensure   => $ensure,
     provider => pip,
-    require  => [Package['python-pip'], Package['python-pycurl'], User['shinken'],]
   }
 
 }

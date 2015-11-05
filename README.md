@@ -19,7 +19,7 @@
 
 ## Overview
 
-This puppet module installs [Shinken](http://http://www.shinken-monitoring.org/), an open source monitoring framework. 
+This puppet module installs [Shinken](http://www.shinken-monitoring.org/), an open source monitoring framework. 
 
 ## Module Description
 

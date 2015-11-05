@@ -6,6 +6,7 @@ class shinken::install (
 
   class {'shinken::packages': }
   class {'shinken::pips': }
+  class {'shinken::modules': }
 
   file { 'shinken.ini':
     ensure  => $ensure,
@@ -14,10 +15,17 @@ class shinken::install (
     owner   => $user,
     group   => $group,
     content => template("${module_name}/shinken.ini.erb"),
-    require => Package['shinken'],
   }
 
-  class {'shinken::modules':
-    require => File['shinken.ini'],
+  if $ensure == 'present' {
+    Class['shinken::packages']->
+    Class['shinken::pips']->
+    File['shinken.ini']->
+    Class['shinken::modules']
+  } else {
+    Class['shinken::modules']->
+    Class['shinken::pips']->
+    File['shinken.ini']->
+    Class['shinken::packages']
   }
 }

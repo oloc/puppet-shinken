@@ -1,8 +1,8 @@
 {
   "name": "oloc-shinken",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "author": "oloc",
-  "summary": "This puppet module installs Shinken, an open source monitoring framework.",
+  "summary": "This puppet module installs Shinken, an open source monitoring framework. Some basic Shinken modules are installed. Webui available",
   "license": "Apache-2.0",
   "source": "https://github.com/oloc/puppet-shinken.git",
   "project_page": "https://github.com/oloc/puppet-shinken",

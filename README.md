@@ -66,6 +66,11 @@ The defaults are determined as below, and you can establish customized parameter
 
 This module modifies Shinken configuration files and directories and purges any configuration not managed by Puppet. Configuration of Shinken should be managed by Puppet, as non-Puppet configuration files can cause unexpected failures.
 
+By default the webui is available:
+* http://localhost:7767
+* login: admin
+* password: admin
+
 ## Reference
 
 ### Classes

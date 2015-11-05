@@ -11,10 +11,6 @@ class shinken::dirs (
     present => directory,
     absent  => absent,
   }
-  $ensure_link = $ensure ? {
-    present => link,
-    absent  => absent,
-  }
 
   $masters = ['arbiters', 'brokers', 'pollers', 'reactionners','receivers','schedulers']
   $dirs = union(['/etc/shinken', '/etc/shinken/packs','/var/lib/shinken','/var/log/shinken','/var/run/shinken'],
@@ -26,21 +22,5 @@ class shinken::dirs (
     mode   => '0755',
     owner  => $user,
     group  => $group,
-  }
-  file {'/var/lib/shinken/config/':
-    ensure => $ensure_link,
-    force  => true,
-    mode   => '0755',
-    owner  => $user,
-    group  => $group,
-    target => $conf_dir,
-  }
-  file {'/var/lib/shinken/modules':
-    ensure => $ensure_link,
-    force  => true,
-    mode   => '0755',
-    owner  => $user,
-    group  => $group,
-    target => $modules_dir,
   }
 }

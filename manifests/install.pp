@@ -6,7 +6,8 @@ class shinken::install (
 
   class {'shinken::packages': }
   class {'shinken::pips': }
-  class {'shinken::modules': }
+
+
 
   file { 'shinken.ini':
     ensure  => $ensure,
@@ -20,10 +21,14 @@ class shinken::install (
   if $ensure == 'present' {
     Class['shinken::packages']->
     Class['shinken::pips']->
-    File['shinken.ini']->
-    Class['shinken::modules']
+    File['shinken.ini'] ->
+    shinken::module { $shinken::modules :
+      ensure  => $ensure,
+    }
   } else {
-    Class['shinken::modules']->
+    shinken::module { $shinken::modules :
+      ensure  => $ensure,
+    } ->
     Class['shinken::pips']->
     File['shinken.ini']->
     Class['shinken::packages']
